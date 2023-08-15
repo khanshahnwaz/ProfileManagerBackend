@@ -17,7 +17,11 @@ app.use(fileUpload({
     useTempFiles:true
 }))
 
-
+app.use(cors({
+    origin: ['https://profilemanager-api.vercel.app'],
+    methods:["POST","GET","PUT","DELETE"],
+    credentials:true
+  }));
 // vercel
 
 app.get('/', (req, res) => {
