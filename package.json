@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Web application that keeps track of your achievements, skills and many moredetails and showcases it",
   "main": "index.js",
+  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
   },
   "author": "Shahnwaz Khan",
   "license": "ISC",
