@@ -26,18 +26,30 @@ app.use(fileUpload({
 
 
 // vercel
-
-app.get('/', (req, res) => {
+const checkUser=require('./Components/LoginMiddleware/checkUser');
+app.get('/',(req, res) => {
     res.send("Please route to correct page.Have a Good Day. IP address is: ")
     // console.log(req.socket.remoteAddress)
 })
 // Available routes
-
+const user=require('./Components/Collections/User')
 // for checking purpose
-app.post('/user/signUp',(req,res)=>{
-   return res.json(req.body);
+app.post('/user/signUp', async (req,res)=>{
+    console.log(req.body)
+    try{
+    const result=await user.create({
+        Name: req.body.name,
+      Email: req.body.email,
+      Phone: req.body.phone,
+      Password: hashedPassword,
+    })
+    console.log(result)
+}catch(err){
+    return res.json(err)
+}
+//    return res.json(req.body);
 })
-app.use('/user', require('./Components/Routes/User'));
+// app.use('/user', require('./Components/Routes/User'));
 app.use('/about',require('./Components/Routes/About'));
 app.use('/skills',require('./Components/Routes/Skills'));
 app.use('/certificates',require('./Components/Routes/Certificate'))
