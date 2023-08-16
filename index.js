@@ -13,22 +13,29 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors())
+
+// app.use(cors({
+//     origin: ['http://localhost:3000'],
+//     methods:["POST","GET","PUT","DELETE"],
+//     credentials:true
+//   }));
 app.use(fileUpload({
     useTempFiles:true
 }))
 
-app.use(cors({
-    origin: ['https://profilemanager-api.vercel.app'],
-    methods:["POST","GET","PUT","DELETE"],
-    credentials:true
-  }));
+
 // vercel
 
 app.get('/', (req, res) => {
     res.send("Please route to correct page.Have a Good Day. IP address is: ")
     // console.log(req.socket.remoteAddress)
 })
-// Available routes 
+// Available routes
+
+// for checking purpose
+app.post('/user/signUp',(req,res)=>{
+   return res.json(req.body);
+})
 app.use('/user', require('./Components/Routes/User'));
 app.use('/about',require('./Components/Routes/About'));
 app.use('/skills',require('./Components/Routes/Skills'));
