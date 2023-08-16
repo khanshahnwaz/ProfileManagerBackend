@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "description": "Web application that keeps track of your achievements, skills and many moredetails and showcases it",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
+    "start": "node index.js",
+    "build":"netlify deploy --prod"
   },
   "author": "Shahnwaz Khan",
   "license": "ISC",
   "dependencies": {
+    
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.40.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
-    "mongoose": "^7.4.3"
+    "mongoose": "^7.4.3",
+    "serverless-http": "^3.2.0"
   }
 }
