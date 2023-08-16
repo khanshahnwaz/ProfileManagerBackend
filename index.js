@@ -1,5 +1,5 @@
 // Database connection url 
-const connection = require('../Components/Connection/DB_Connections');
+const connection = require('./Components/Connection/DB_Connections');
 // import {v2 as cloudinary} from 'cloudinary';
 const fileUpload=require('express-fileupload')
 
@@ -37,16 +37,15 @@ app.get('/', (req, res) => {
 app.post('/user/signUp',(req,res)=>{
    return res.json(req.body);
 })
-app.use('/user', require('../Components/Routes/User'));
-app.use('/about',require('../Components/Routes/About'));
-app.use('/skills',require('../Components/Routes/Skills'));
-app.use('/certificates',require('../Components/Routes/Certificate'))
-app.use('/experiences',require('../Components/Routes/Experience'))
-app.use('/education',require('../Components/Routes/Education'))
-app.use('/connection',require('../Components/Routes/Connections'))
+app.use('/user', require('./Components/Routes/User'));
+app.use('/about',require('./Components/Routes/About'));
+app.use('/skills',require('./Components/Routes/Skills'));
+app.use('/certificates',require('./Components/Routes/Certificate'))
+app.use('/experiences',require('./Components/Routes/Experience'))
+app.use('/education',require('./Components/Routes/Education'))
+app.use('/connection',require('./Components/Routes/Connections'))
 
 app.listen(3001, () => {
     console.log('Listening at Localhost:3001')
 })
 
-export const handler = serverless(app);
