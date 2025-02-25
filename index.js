@@ -8,7 +8,12 @@ connection();
 const express = require('express');
 const cors = require('cors')
 const app = express();
-app.use(cors())
+app.use(cors({
+    origin: '*',  // Allow all origins (change this to your frontend URL in production)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true // Allow credentials if using cookies or authentication
+}));
 
 // Middleware to send post request
 app.use(express.json({ limit: '50mb' }));
