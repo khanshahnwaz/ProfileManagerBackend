@@ -48,6 +48,10 @@ router.post("/signUp", async (req, res) => {
       Phone: req.body.phone,
       Password: hashedPassword,
       Photo: "/img/user.jpg",
+      UserName:req.body.userName,
+      Description:req.body.description,
+      BirthDate:req.body.date,
+      Gender:req.body.gender
     });
 
     const payLoad = {
@@ -93,6 +97,9 @@ router.post("/signUp", async (req, res) => {
     });
 
     const userData = {
+      userName:create.UserName,
+      gender:create.Gender,
+      birthDate:create.BirthDate,
       name: create.Name,
       email: create.Email,
       phone: create.Phone,
@@ -182,6 +189,8 @@ router.post("/login", async (req, res) => {
 
     const userData = {
       name: oldPassword.Name,
+      userName:oldPassword.UserName,
+      gender:oldPassword.Gender,
       email: oldPassword.Email,
       phone: oldPassword.Phone,
       photo: oldPassword.Photo,
@@ -205,7 +214,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.put("/editProfile", checkUser, async (req, res) => {
-  const { email, phone, name } = req.body;
+  const { email, phone, name,userName,gender } = req.body;
   console.log("New data is", email, phone, name);
 
   const FID = req.user.id;
@@ -223,6 +232,8 @@ router.put("/editProfile", checkUser, async (req, res) => {
         Name: name,
         Email: email,
         Phone: phone,
+        UserName:userName,
+        Gender:gender
       }
     );
 
@@ -251,6 +262,8 @@ router.put("/editProfile", checkUser, async (req, res) => {
     console.log(skill);
     const userData = {
       name: updatedData.Name,
+      userName:updatedData.UserName,
+      gender:updatedData.Gender,
       email: updatedData.Email,
       phone: updatedData.Phone,
       photo: updatedData.Photo,
@@ -314,6 +327,8 @@ router.get("/getData", checkUser, async (req, res) => {
   // console.log("Educations ", educatio);
   const data = {
     Name: userData.Name,
+    UserName:userData.UserName,
+    Gender:userData.Gender,
     Email: userData.Email,
     Phone: userData.Phone,
     Photo: userData.Photo,

@@ -1,8 +1,21 @@
 const mongoose= require('mongoose');
+const { type } = require('os');
 
 const User= new mongoose.Schema({
     Name:{
         type:String
+    },
+    UserName:{
+        type:String,
+        
+      
+    },
+    Gender:{
+        type:String,
+        enum:['Male','Female','Non Binary']
+    },
+    BirthDate:{
+        type:Date
     },
     Email:{
         type:String,
@@ -11,6 +24,7 @@ const User= new mongoose.Schema({
     Phone:{
         type:String,
     },
+    
     Photo:{
         type:String,
     },
