@@ -8,12 +8,19 @@ connection();
 const express = require('express');
 const cors = require('cors')
 const app = express();
-app.use(cors({
-    origin: 'https://profile-manage-frontend.vercel.app',  // Allow all origins (change this to your frontend URL in production)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-    credentials: true // Allow credentials if using cookies or authentication
-}));
+// Fix CORS issue
+const corsOptions = {
+    origin: 'https://profile-manage-frontend.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+app.options('*', cors(corsOptions)); // Allow OPTIONS preflight requests globally
+
 
 // Middleware to send post request
 app.use(express.json({ limit: '50mb' }));
